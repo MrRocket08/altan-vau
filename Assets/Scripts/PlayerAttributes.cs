@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerAttributes : MonoBehaviour
 {
+    #region References
+        public TMPro.TextMeshProUGUI ManaText;
+    
+    #endregion
+    
+    #region PlayerValues
     private int STR = 12; // used for all typical strength checks as well as CON
     private int DEX = 12; // used for quickly casting complex spells and wielding staffs
     private int INT = 12; // used for weapon attunement speed and mana usage
     private int WIS = 12; // used for spell and component attunement speed and spell complexity
+    #endregion
 
-    #region mana
+    #region Mana
 
         private float MAX_MANA = 150;
         private float mana = 0;
@@ -26,7 +34,7 @@ public class PlayerAttributes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //ManaText = GameObject.Find("ManaValue (Placeholder)").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -35,6 +43,8 @@ public class PlayerAttributes : MonoBehaviour
         timeSinceSpellUsage += Time.deltaTime;
         
         RestoreMana(MAX_MANA - mana, timeSinceSpellUsage);
+        
+        ManaText.text = mana.ToString("N0");
     }
 
     private void RestoreMana(float manaDifference, float time)
