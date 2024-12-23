@@ -49,6 +49,12 @@ public class PlayerAttributes : MonoBehaviour
         }
 
         mana += manaRegen;
+
+        if (mana >= MAX_MANA)
+        {
+            mana = MAX_MANA;
+            manaRegen = 0f;
+        }
     }
 
     public void UseSpell(float manaUsage)
