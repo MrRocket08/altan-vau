@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Spell : Item
 {
-    private List<Component> spellComponents = new List<Component>(); // all of the components which comprise the spell
+    private List<Rune> runes = new List<Rune>(); // all of the runes which comprise the spell
     private int spellLevel = 1;
     
     // Start is called before the first frame update
     void Start()
     {
-        determineLevel(spellComponents.Count);
+        determineLevel(runes.Count);
     }
 
     // Update is called once per frame
@@ -20,17 +20,17 @@ public class Spell : Item
     }
 
     // spell level: 1 (1), 3 (2), 4 (3), 6 (4), 7 (5)
-    private void determineLevel(int componentCount)
+    private void determineLevel(int runeCount)
     {
-        switch (componentCount)
+        int maxLevel = 1;
+        int newLevel;
+        for (int i = 0; i < runeCount; i++)
         {
-            case 1: spellLevel = 1; break;
-            case 2: spellLevel = 2; break;
-            case 3: spellLevel = 2; break;
-            case 4: spellLevel = 3; break;
-            case 5: spellLevel = 4; break;
-            case 6: spellLevel = 4; break;
-            case 7: spellLevel = 5; break;
+            newLevel = runes[i].GetLevel();
+            
+            if (newLevel > maxLevel) { maxLevel = newLevel; }
         }
+
+        spellLevel = maxLevel;
     }
 }
