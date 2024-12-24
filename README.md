@@ -1,2 +1,2 @@
 # altan-vau
-Noita-like roguelite where you build spells from a variety of components
+Noita-like roguelite where you build programmatic spells from a variety of runes.
