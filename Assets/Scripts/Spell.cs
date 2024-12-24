@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Spell", menuName = "ScriptableObjects/Spell", order = 2)]
 public class Spell : Item
 {
-    private List<Rune> runes = new List<Rune>(); // all of the runes which comprise the spell
-    private int spellLevel = 1;
+    public List<Rune> runes = new List<Rune>(); // all of the runes which comprise the spell
+    public int spellLevel = 1;
     
     // Start is called before the first frame update
     void Start()
