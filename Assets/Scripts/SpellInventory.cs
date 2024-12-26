@@ -6,10 +6,17 @@ public class SpellInventory : MonoBehaviour
 {
     public Spell[] spells = new Spell[6];
     public SpellSlot[] spellSlots = new SpellSlot[6];
+
+    private SpellSlot selectedSpellSlot;
+    private Spell selectedSpell;
     
-    // getter methods
+    // event methods
+    void Start()
+    {
+        UpdateSpellSlots();
+    }
     
-    // setter methods
+    // class methods    
     private bool Add(Spell spell)
     {
         for (int i = 0; i < spells.Length; i++)
@@ -25,11 +32,26 @@ public class SpellInventory : MonoBehaviour
         return false;
     }
 
-    public void UpdateSpellSlot()
+    public void SelectSpellSlot(int slotNumber)
     {
-        for (int i = 0; i < spellSlots.Length; i++)
+        selectedSpellSlot = spellSlots[slotNumber];
+        selectedSpell = selectedSpellSlot.GetSpell();
+
+        //selectedSpellSlot.HighlightSpellSlot();
+    }
+
+    public Spell UseSpellSlot()
+    {
+        selectedSpell.Cast();
+        
+        return selectedSpell;
+    }
+
+    public void UpdateSpellSlots()
+    {
+        foreach (SpellSlot s in spellSlots)
         {
-            spellSlots[i].UpdateSpellSlot();
+            s.UpdateSpellSlot();
         }
     }
 
@@ -39,7 +61,7 @@ public class SpellInventory : MonoBehaviour
         
         if (isAdded)
         {
-            UpdateSpellSlot();
+            UpdateSpellSlots();
         }
     }
 }

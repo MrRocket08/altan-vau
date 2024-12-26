@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class SpellSlot : MonoBehaviour
 {
     private Spell spell;
-    private Image spellImage;
+    [SerializeField]
+    public Image spellImage;
 
     // class methods
     public void UpdateSpellSlot()

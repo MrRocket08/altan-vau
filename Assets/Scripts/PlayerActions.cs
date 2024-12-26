@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerAttributes : MonoBehaviour
+public class PlayerActions : MonoBehaviour
 {
     #region References
         public TMPro.TextMeshProUGUI ManaText;
-    
+
+        private SpellInventory si;
     #endregion
     
     #region PlayerValues
@@ -35,6 +36,8 @@ public class PlayerAttributes : MonoBehaviour
     void Start()
     {
         //ManaText = GameObject.Find("ManaValue (Placeholder)").GetComponent<TextMeshProUGUI>();
+        
+        si = GameObject.Find("InventoryManager").GetComponent<SpellInventory>();
     }
 
     // Update is called once per frame
@@ -67,9 +70,9 @@ public class PlayerAttributes : MonoBehaviour
         }
     }
 
-    public void UseSpell(float manaUsage)
+    public void UseSpell()
     {
         timeSinceSpellUsage = 0f;
-        waitTimeToRegen = manaUsage / 10f;
+        waitTimeToRegen = si.UseSpellSlot().GetManaUsage() / 10f;
     }
 }

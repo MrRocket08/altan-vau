@@ -7,6 +7,7 @@ public class Rune : ScriptableObject
 {
     public int runeLevel = 1;
     public string runeName;
+    public int manaCost;
 
     public enum RuneType { Action, Conditional, Parameter, Imbuement }
     public RuneType type = 0;
@@ -32,6 +33,7 @@ public class Rune : ScriptableObject
     
     // getter methods
     public int GetLevel () { return runeLevel; }
+    public int GetManaCost() { return manaCost; }
     public Rune GetNextRune () { return nextRune; }
     public Rune GetPrevRune () { return prevRune; }
     
