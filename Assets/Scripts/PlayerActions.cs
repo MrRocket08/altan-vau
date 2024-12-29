@@ -48,6 +48,26 @@ public class PlayerActions : MonoBehaviour
         RestoreMana(MAX_MANA - mana, timeSinceSpellUsage);
         
         ManaText.text = mana.ToString("N0");
+
+        if (Input.GetKey("1"))
+        {
+            si.SelectSpellSlot(0);
+        } else if (Input.GetKey("2"))
+        {
+            si.SelectSpellSlot(1);
+        } else if (Input.GetKey("3"))
+        {
+            si.SelectSpellSlot(2);
+        } else if (Input.GetKey("4"))
+        {
+            si.SelectSpellSlot(3);
+        } else if (Input.GetKey("5"))
+        {
+            si.SelectSpellSlot(4);
+        } else if (Input.GetKey("6"))
+        {
+            si.SelectSpellSlot(5);
+        } 
     }
 
     private void RestoreMana(float manaDifference, float time)

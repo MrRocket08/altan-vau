@@ -37,7 +37,17 @@ public class SpellInventory : MonoBehaviour
         selectedSpellSlot = spellSlots[slotNumber];
         selectedSpell = selectedSpellSlot.GetSpell();
 
-        //selectedSpellSlot.HighlightSpellSlot();
+        for (int i = 0; i < spellSlots.Length; i++)
+        {
+            if (i == slotNumber)
+            {
+                spellSlots[i].HighlightSpellSlot();
+            }
+            else
+            {
+                spellSlots[i].DehighlightSpellSlot();
+            }
+        }
     }
 
     public Spell UseSpellSlot()
@@ -47,7 +57,7 @@ public class SpellInventory : MonoBehaviour
         return selectedSpell;
     }
 
-    public void UpdateSpellSlots()
+    private void UpdateSpellSlots()
     {
         foreach (SpellSlot s in spellSlots)
         {
