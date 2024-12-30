@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d71b73a308a8744bd8426a1a39bff809, type: 3}
-  m_Name: Ray of Frost
+  m_Script: {fileID: 11500000, guid: a126106a4c6814a1f9bb2568a66624a3, type: 3}
+  m_Name: Cast Orb
   m_EditorClassIdentifier: 
-  runes:
-  - {fileID: 11400000, guid: 0a2d26688e5d8441486dbb42ac2eaaec, type: 2}
-  spellLevel: 1
-  manaUsage: 0
-  spellSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  runeLevel: 1
+  runeName: Cast Orb
+  manaCost: 30
+  type: 0
+  castProjectile: 4

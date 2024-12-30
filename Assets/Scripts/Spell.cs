@@ -16,7 +16,10 @@ public class Spell : Item
     }
 
     // class methods
-    public void Cast() {}
+    public void Cast()
+    {
+        runes[0].RuneFunction();
+    }
 
     private void DetermineAttributes()
     {

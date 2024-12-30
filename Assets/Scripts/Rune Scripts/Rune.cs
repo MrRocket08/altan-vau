@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,7 @@ public class Rune : ScriptableObject
     protected Rune PrevRune;
 
     protected GameObject MagicObject;
-
+    
     // constructor
     /* public Rune(int runeLevel, string runeName)
     {
@@ -25,12 +26,22 @@ public class Rune : ScriptableObject
     } */
     
     // class methods
-    public void RuneFunction(GameObject magicObject)
+    public virtual void RuneFunction()
+    {
+        // calls the next rune in the spell
+        if (NextRune != null)
+            NextRune.RuneFunction();
+        else return;
+    }
+    
+    public virtual void RuneFunction(GameObject magicObject)
     {
         // rune does its thing
         
         // calls the next rune in the spell
-        NextRune.RuneFunction(magicObject);
+        if (NextRune != null)
+            NextRune.RuneFunction(magicObject);
+        else return;
     }
     
     // getter methods
