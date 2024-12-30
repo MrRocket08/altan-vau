@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Rune", menuName = "ScriptableObjects/Rune", order = 1)]
+//[CreateAssetMenu(fileName = "Rune", menuName = "ScriptableObjects/Rune", order = 1)]
 public class Rune : ScriptableObject
 {
     public int runeLevel = 1;
@@ -12,32 +12,34 @@ public class Rune : ScriptableObject
     public enum RuneType { Action, Conditional, Parameter, Imbuement }
     public RuneType type = 0;
     
-    private Rune nextRune;
-    private Rune prevRune;
+    protected Rune NextRune;
+    protected Rune PrevRune;
+
+    protected GameObject MagicObject;
 
     // constructor
-    public Rune(int runeLevel, string runeName)
+    /* public Rune(int runeLevel, string runeName)
     {
         this.runeLevel = runeLevel;
         this.runeName = runeName;
-    }
+    } */
     
     // class methods
-    public void RuneFunction()
+    public void RuneFunction(GameObject magicObject)
     {
         // rune does its thing
         
         // calls the next rune in the spell
-        nextRune.RuneFunction();
+        NextRune.RuneFunction(magicObject);
     }
     
     // getter methods
     public int GetLevel () { return runeLevel; }
     public int GetManaCost() { return manaCost; }
-    public Rune GetNextRune () { return nextRune; }
-    public Rune GetPrevRune () { return prevRune; }
+    public Rune GetNextRune () { return NextRune; }
+    public Rune GetPrevRune () { return PrevRune; }
     
     // setter methods
-    public void SetNextRune (Rune rune) { nextRune = rune; }
-    public void SetPrevRune (Rune rune) { prevRune = rune; }
+    public void SetNextRune (Rune rune) { NextRune = rune; }
+    public void SetPrevRune (Rune rune) { PrevRune = rune; }
 }
