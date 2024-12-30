@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -74,4 +75,14 @@ public class SpellInventory : MonoBehaviour
             UpdateSpellSlots();
         }
     }
+    
+    public bool IsSpellSelected() { return selectedSpell != null; }
+    
+    // getter methods
+    public Spell GetSelectedSpell()
+    {
+        return selectedSpell;
+    }
+    
+    // setter methods
 }

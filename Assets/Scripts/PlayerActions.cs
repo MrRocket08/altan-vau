@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using static UnityEngine.Input;
 
 public class PlayerActions : MonoBehaviour
 {
     #region References
-        public TMPro.TextMeshProUGUI ManaText;
+
+    public Image manaBarImage;
 
         private SpellInventory si;
     #endregion
@@ -19,7 +22,6 @@ public class PlayerActions : MonoBehaviour
     #endregion
 
     #region Mana
-
         private float MAX_MANA = 150;
         private float mana = 0;
         
@@ -28,46 +30,52 @@ public class PlayerActions : MonoBehaviour
 
         private float timeSinceSpellUsage = 0f; // using any spell reduces this back to 0
         private float waitTimeToRegen = 0f; // a larger amount of mana used by the spell results in a larger time to start regenning
-        private float regenExponential = 15f; // the constant c in y = c * log(x)
+        private float regenExponential = .2f; // the constant c in y = c * log(x)
 
     #endregion
     
     // Start is called before the first frame update
     void Start()
     {
-        //ManaText = GameObject.Find("ManaValue (Placeholder)").GetComponent<TextMeshProUGUI>();
+        //manaBarImage = GameObject.Find("Mana Bar Fill").GetComponent<Image>();
         
         si = GameObject.Find("InventoryManager").GetComponent<SpellInventory>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         timeSinceSpellUsage += Time.deltaTime;
         
         RestoreMana(MAX_MANA - mana, timeSinceSpellUsage);
         
-        ManaText.text = mana.ToString("N0");
-
-        if (Input.GetKey("1"))
+        manaBarImage.fillAmount = mana / MAX_MANA;
+        
+        if (GetKeyDown("1"))
         {
             si.SelectSpellSlot(0);
-        } else if (Input.GetKey("2"))
+        } else if (GetKeyDown("2"))
         {
             si.SelectSpellSlot(1);
-        } else if (Input.GetKey("3"))
+        } else if (GetKeyDown("3"))
         {
             si.SelectSpellSlot(2);
-        } else if (Input.GetKey("4"))
+        } else if (GetKeyDown("4"))
         {
             si.SelectSpellSlot(3);
-        } else if (Input.GetKey("5"))
+        } else if (GetKeyDown("5"))
         {
             si.SelectSpellSlot(4);
-        } else if (Input.GetKey("6"))
+        } else if (GetKeyDown("6"))
         {
             si.SelectSpellSlot(5);
-        } 
+        }
+
+        // maybe thinking about moving the mana usage check somewhere else later
+        if (si.IsSpellSelected() && si.GetSelectedSpell().GetManaUsage() <= mana && GetMouseButtonDown(1))
+        {
+            UseSpell();
+        }
     }
 
     private void RestoreMana(float manaDifference, float time)
@@ -92,7 +100,9 @@ public class PlayerActions : MonoBehaviour
 
     public void UseSpell()
     {
+        mana -= si.GetSelectedSpell().GetManaUsage();
+        
         timeSinceSpellUsage = 0f;
-        waitTimeToRegen = si.UseSpellSlot().GetManaUsage() / 10f;
+        waitTimeToRegen = si.UseSpellSlot().GetManaUsage() / 10f; // casts the spell and uses its return to determine mana usage
     }
 }

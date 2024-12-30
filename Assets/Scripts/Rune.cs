@@ -28,7 +28,7 @@ public class Rune : ScriptableObject
         // rune does its thing
         
         // calls the next rune in the spell
-        prevRune.RuneFunction();
+        nextRune.RuneFunction();
     }
     
     // getter methods

@@ -10,17 +10,15 @@ public class Spell : Item
     public int manaUsage;
     public Sprite spellSprite;
     
-    // Start is called before the first frame update
     void OnEnable()
     {
-        determineAttributes(runes.Count);
+        DetermineAttributes();
     }
 
     // class methods
     public void Cast() {}
 
-    // spell level: 1 (1), 3 (2), 4 (3), 6 (4), 7 (5)
-    private void determineAttributes(int runeCount)
+    private void DetermineAttributes()
     {
         manaUsage = 0;
         
