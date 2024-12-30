@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d71b73a308a8744bd8426a1a39bff809, type: 3}
   m_Name: Fire Bolt
   m_EditorClassIdentifier: 
-  runes: []
+  runes:
+  - {fileID: 11400000, guid: 60ff11ca62fc54876af05476ced9f693, type: 2}
   spellLevel: 1
   manaUsage: 30
   spellSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
